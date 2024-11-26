@@ -1,43 +1,46 @@
+'use client';
+
 import { Button } from '@repo/design-system/components/ui/button';
 import { env } from '@repo/env';
-import { allPosts } from 'content-collections';
-import { MoveRight, PhoneCall } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Github } from 'lucide-react';
 import Link from 'next/link';
 
 export const Hero = () => (
-  <div className="w-full">
-    <div className="container mx-auto">
-      <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
-        <div>
-          <Button variant="secondary" size="sm" className="gap-4" asChild>
-            <Link href={`/blog/${allPosts[0]._meta.path}`}>
-              Read our latest article <MoveRight className="h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
-        <div className="flex flex-col gap-4">
-          <h1 className="max-w-2xl text-center font-regular text-5xl tracking-tighter md:text-7xl">
-            This is the start of something new
-          </h1>
-          <p className="max-w-2xl text-center text-lg text-muted-foreground leading-relaxed tracking-tight md:text-xl">
-            Managing a small business today is already tough. Avoid further
-            complications by ditching outdated, tedious trade methods. Our goal
-            is to streamline SMB trade, making it easier and faster than ever.
-          </p>
-        </div>
-        <div className="flex flex-row gap-3">
-          <Button size="lg" className="gap-4" variant="outline" asChild>
-            <Link href="/contact">
-              Get in touch <PhoneCall className="h-4 w-4" />
-            </Link>
-          </Button>
-          <Button size="lg" className="gap-4" asChild>
+  <section className="relative overflow-hidden py-20 sm:py-32 lg:pb-32 xl:pb-36">
+    <div className="container">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mx-auto max-w-3xl text-center"
+      >
+        <h1 className="font-display mx-auto max-w-4xl text-4xl font-medium tracking-tight sm:text-7xl">
+          Ship{' '}
+          <span className="relative whitespace-nowrap">
+            <span className="relative text-primary">better software</span>
+          </span>{' '}
+          faster
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+          Your complete toolkit for modern web development. Start building
+          production-ready applications with Next.js, TypeScript, and
+          industry-leading practices.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-4">
+          <Button asChild size="lg" className="gap-2">
             <Link href={env.NEXT_PUBLIC_APP_URL}>
-              Sign up <MoveRight className="h-4 w-4" />
+              Get Started <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="gap-2">
+            <Link href="https://github.com/your-repo/shipkit">
+              <Github className="h-4 w-4" />
+              Star on GitHub
             </Link>
           </Button>
         </div>
-      </div>
+      </motion.div>
     </div>
-  </div>
+  </section>
 );
